@@ -1,0 +1,121 @@
+
+ <ion-header>
+ <ion-toolbar>
+   <ion-buttons slot="start">
+     <ion-menu-button color="primary"></ion-menu-button>
+   </ion-buttons>
+   <ion-title style="font-family: cursive;">
+COVID19APP
+<ion-icon name="cog"></ion-icon>
+   </ion-title>
+ </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  
+  <div class="App">
+    <h6 class="fineprint">
+      <!-- Cases {{totalCases.confirmed}} -->
+      <span style="color: black;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: 15px;">Covid19 Cases 
+           <ion-icon name="pulse" color="danger"></ion-icon> <ion-icon name="pulse" color="primary"></ion-icon> <ion-icon name="pulse" color="dark"></ion-icon></span>
+    </h6>
+   
+  <!-- <h6>Active Cases {{totalCases.confirmed}}
+      <span>    <ion-icon name="pulse" color="success"></ion-icon></span>
+    </h6>  -->
+    <ion-grid class="grid-data" >
+     
+      <ion-row class="row-container">
+        
+        <ion-col class="header-col">
+          State
+        </ion-col>
+        <ion-col class="header-col">
+          Cnfrmd
+        </ion-col>
+        <ion-col class="header-col">
+          Active
+        </ion-col>
+        <ion-col class="header-col">
+          Rcvred
+        </ion-col>
+        <ion-col class="header-col">
+          Death
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="grid-data1">
+      <ion-row *ngFor="let stateCase of stateCases" class="row-container1">
+        <ion-col class="header-col1" (click)="showDistrictData(stateCase.state)">
+          <ion-icon name="{{stateCase.expanded? 'chevron-down-outline' : 'chevron-forward-outline'}}"></ion-icon>
+          {{stateCase.state}}
+        </ion-col>
+        <ion-col class="header-col1">
+          {{stateCase.confirmed}}
+        </ion-col>
+        <ion-col class="header-col1">
+          {{stateCase.active}}
+        </ion-col>
+        <ion-col class="header-col1">
+          {{stateCase.recovered}}
+        </ion-col>
+        <ion-col class="header-col1">
+          {{stateCase.deaths}}
+        </ion-col>
+        <div *ngIf="stateCase.expanded" class="grid-data1">
+          <ion-card>
+            <ion-row class="row-container1">
+              <ion-col class="header-col1">
+                District
+              </ion-col>
+              <ion-col class="header-col1">
+                Confirmed
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let districtData of stateCase.districts" class="district-data">
+              <ion-col class="header-col1">{{districtData.district}}</ion-col>
+              <ion-col class="header-col1">
+                {{districtData.confirmed}}
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content> 
+
+<ion-footer>
+  <div class="footer success">
+ <ion-tabs>
+  <ion-tab-bar style="margin-bottom: 53px;" slot="bottom">
+    <ion-tab-button tab="account">
+      <ion-icon name="refresh" color="primary" >
+      
+      </ion-icon>
+      <ion-label>Refresh</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="calls">
+      <ion-icon name="medkit" color="danger">
+
+      </ion-icon>
+      <ion-label>Med</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="account">
+      <ion-icon name="train" color="dark">
+ 
+      </ion-icon>
+      <ion-label>Travel</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="account">
+      <ion-icon name="bulb" color="warning">
+     
+      </ion-icon>
+      <ion-label >Tips</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+  </div>
+</ion-footer>  
